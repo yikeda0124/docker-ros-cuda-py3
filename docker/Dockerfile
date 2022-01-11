@@ -89,6 +89,14 @@ RUN source /root/.bashrc && \
     pip install matplotlib && \
     pip install torch==1.10.1+cu113 torchvision==0.11.2+cu113 torchaudio==0.10.1+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
 
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        ros-noetic-realsense2-camera \
+        ros-noetic-image-transport* \
+        ros-noetic-rgbd-launch && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 # Copy the helper scripts to the working directory.
 COPY ./docker/scripts/. /root/scripts/
 RUN chmod -R +x /root/scripts/*

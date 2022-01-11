@@ -22,6 +22,8 @@ services:
       # Map repository sources.
       - ../ros_docker:/root/catkin_ws/src/ros_docker
       - ./scripts:/root/scripts
+      # realsense
+      - /dev:/dev
       # Grant display access to X Server.
       - /tmp/.X11-unix:/tmp/.X11-unix
     network_mode: host
