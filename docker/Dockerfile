@@ -78,8 +78,12 @@ RUN apt-get update && \
         ros-noetic-tf-conversions \
         ros-noetic-kdl-parser \
         ros-noetic-moveit-resources-prbt-moveit-config \
-        ros-noetic-pilz-industrial-motion-planner 
+        ros-noetic-pilz-industrial-motion-planner
 
+RUN cd /root/catkin_ws/src && \
+    git clone https://github.com/Unity-Technologies/ROS-TCP-Endpoint && \
+    cd /root/catkin_ws/ && \
+    bash -c "source /opt/ros/noetic/setup.bash; catkin_make" 
 
 RUN source /root/.bashrc && \
     pip install matplotlib && \
