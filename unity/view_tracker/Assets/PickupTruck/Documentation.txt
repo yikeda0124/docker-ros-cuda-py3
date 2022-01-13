@@ -1,0 +1,5 @@
+This is a free 3d model of a pickup truck with 20k polygon. 
+
+In this project, you will have a DemoScene where you can see the rendered car that appears on screenshots. If you want to add it to another scene, go to the Prefabs folder and drag the game ready prefab into the new scene.
+
+Don't forget to install PostProcessingPackage via PackageManager.
