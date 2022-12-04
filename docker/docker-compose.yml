@@ -18,10 +18,12 @@ services:
     build:
       context: ../
       dockerfile: ./docker/Dockerfile
+    shm_size: '48gb'
     volumes:
       # Map repository sources.
       - ../ros_docker:/root/catkin_ws/src/ros_docker
       - ./scripts:/root/scripts
+      - ../work:/root/work
       # Grant display access to X Server.
       - /tmp/.X11-unix:/tmp/.X11-unix
     network_mode: host
