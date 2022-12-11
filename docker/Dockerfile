@@ -84,6 +84,11 @@ RUN apt-get update && \
 #     pip install matplotlib && \
 #     pip install torch==1.10.1+cu113 torchvision==0.11.2+cu113 torchaudio==0.10.1+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
 
+# install Anaconda
+RUN wget https://repo.anaconda.com/archive/Anaconda3-2022.10-Linux-x86_64.sh && \
+    bash Anaconda3-2022.10-Linux-x86_64.sh -b && \
+    rm Anaconda3-2022.10-Linux-x86_64.sh
+
 # Copy the helper scripts to the working directory.
 COPY ./docker/scripts/. /root/scripts/
 RUN chmod -R +x /root/scripts/*
@@ -97,13 +102,9 @@ RUN sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/' /root/.bashrc
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# install Anaconda
-RUN wget https://repo.anaconda.com/archive/Anaconda3-2022.10-Linux-x86_64.sh && \
-    bash Anaconda3-2022.10-Linux-x86_64.sh -b && \
-    rm Anaconda3-2022.10-Linux-x86_64.sh
-
-
 WORKDIR /root
+
+RUN echo "export PATH=/root/anaconda3/bin:$PATH >> /root/.bashrc"
 
 ENTRYPOINT []
 
