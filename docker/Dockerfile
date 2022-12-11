@@ -97,6 +97,12 @@ RUN sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/' /root/.bashrc
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+# install Anaconda
+RUN wget https://repo.anaconda.com/archive/Anaconda3-2022.10-Linux-x86_64.sh && \
+    bash Anaconda3-2022.10-Linux-x86_64.sh -b && \
+    rm Anaconda3-2022.10-Linux-x86_64.sh
+
+
 WORKDIR /root
 
 ENTRYPOINT []
