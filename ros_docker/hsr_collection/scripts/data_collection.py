@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 import rospy
 import numpy as np
 from sensor_msgs.msg import Image
@@ -13,7 +13,7 @@ INTRINSICS = {
     'xtion': [537.4933389299223, 0.0, 319.9746375212718, 0.0, 536.5961755975517, 244.54846607953, 0.0, 0.0, 1.0],
 }
 
-def get_info(tfl, use_hand, target_frame, stamp=None, wait=True):
+def get_info(tfl, use_hand, stamp=None, wait=True, target_frame='world'):
     hdr = std_msgs.msg.Header()
     hdr.stamp = rospy.Time(0) if stamp is None else stamp
 
@@ -38,8 +38,8 @@ def depth2cam(dx, dy, dz, K):
     return cx, cy, dz
 
 
-def depth2world(d_img, use_hand, tfl, stamp=None, wait=True, target_frame=None, A=None):
-    K, mat = get_info(tfl, use_hand, target_frame, stamp=stamp, wait=wait)
+def depth2world(d_img, use_hand, tfl, stamp=None, wait=True, A=None):
+    K, mat = get_info(tfl, use_hand, stamp=stamp, wait=wait)
 
     if A is not None:
         mat = A.dot(mat)
@@ -85,9 +85,9 @@ class DataCollector:
         world = world.astype(np.float32)
         num = "000"+str(num)
         num = num[-3:]
-        np.save("data/image" + num +".npy", image)
-        np.save("data/depth" + num +".npy", depth)
-        np.save("data/world" + num +".npy", world)
+        np.save("../data/image" + num +".npy", image)
+        np.save("../data/depth" + num +".npy", depth)
+        np.save("../data/world" + num +".npy", world)
 
     def main(self):
         i = 0

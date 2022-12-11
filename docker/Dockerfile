@@ -104,7 +104,7 @@ RUN apt-get clean && \
 
 WORKDIR /root
 
-RUN echo "export PATH=/root/anaconda3/bin:$PATH >> /root/.bashrc"
+RUN echo "export PATH=/root/anaconda3/bin:$PATH" >> /root/.bashrc
 
 ENTRYPOINT []
 
