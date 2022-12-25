@@ -18,7 +18,7 @@ services:
     build:
       context: ../
       dockerfile: ./docker/Dockerfile
-    shm_size: '48gb'
+    shm_size: '8gb'
     volumes:
       # Map repository sources.
       - ../ros_docker:/root/catkin_ws/src/ros_docker
