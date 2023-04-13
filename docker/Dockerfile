@@ -80,9 +80,9 @@ RUN apt-get update && \
         ros-noetic-pilz-industrial-motion-planner 
 
 
-# RUN source /root/.bashrc && \
-#     pip install matplotlib && \
-#     pip install torch==1.10.1+cu113 torchvision==0.11.2+cu113 torchaudio==0.10.1+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
+RUN source /root/.bashrc && \
+    pip install matplotlib && \
+    pip install torch==1.11.0+cu115 torchvision==0.12.0+cu115 torchaudio==0.11.0+cu115 -f https://download.pytorch.org/whl/cu115/torch_stable.html
 
 # Copy the helper scripts to the working directory.
 COPY ./docker/scripts/. /root/scripts/
